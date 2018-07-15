@@ -32,20 +32,25 @@ export default class Helloworld extends cc.Component {
         this.sendHello("ddk")
     }
 
-    sendHello(name : string){
+    sendHello(name: string){
         let protocolId = 0
         let message = msg.Hello.create({ id:0,name:name })
         let buffer  = msg.Hello.encode(message).finish()
         //leaf 前两位为协议序号，故需包装一下
         let addtag_buffer = this.netControl.protoBufAddtag(protocolId,buffer)
 
-        this.netControl.send(addtag_buffer);
+        this.netControl.send(addtag_buffer.buffer);
         console.log("sendToWS");
     }
 
-    onMessage(obj){
-        //leaf 前两位为协议序号，需要解一下啊协议序号
-        this.netControl.parseProtoBufId(obj,this.OnGameMessage.bind(this))  
+    onMessage(obj: MessageEvent){
+        if(obj.data instanceof ArrayBuffer){
+            //leaf 前两位为协议序号，需要解一下啊协议序号
+            let retdata = this.netControl.parseProtoBufId(obj)  
+            let id = retdata.id
+            let data = retdata.data
+            this.OnGameMessage(id,data)
+        }
     }
 
     OnGameMessage(id: number,data: Uint8Array){
