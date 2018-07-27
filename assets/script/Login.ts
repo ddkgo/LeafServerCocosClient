@@ -28,7 +28,9 @@ export default class Login extends cc.Component {
                 if(checkPwd.ret){
                     NetMessageCtrl.getInstance().sendLogin(name,pwd);
                 }
-                Utils.showTips("提示",checkPwd.msg)
+                else{
+                    Utils.showTips("提示",checkPwd.msg)
+                }
             }
             else{
                 Utils.showTips("提示",check.msg)

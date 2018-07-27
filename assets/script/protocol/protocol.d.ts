@@ -298,6 +298,9 @@ export namespace msg {
 
         /** UserResult RetResult */
         RetResult?: (msg.Result|null);
+
+        /** UserResult ErrorInfo */
+        ErrorInfo?: (string|null);
     }
 
     /** Represents a UserResult. */
@@ -311,6 +314,9 @@ export namespace msg {
 
         /** UserResult RetResult. */
         public RetResult: msg.Result;
+
+        /** UserResult ErrorInfo. */
+        public ErrorInfo: string;
 
         /**
          * Creates a new UserResult instance using the specified properties.

@@ -650,6 +650,7 @@ $root.msg = (function() {
          * @memberof msg
          * @interface IUserResult
          * @property {msg.Result|null} [RetResult] UserResult RetResult
+         * @property {string|null} [ErrorInfo] UserResult ErrorInfo
          */
 
         /**
@@ -674,6 +675,14 @@ $root.msg = (function() {
          * @instance
          */
         UserResult.prototype.RetResult = 0;
+
+        /**
+         * UserResult ErrorInfo.
+         * @member {string} ErrorInfo
+         * @memberof msg.UserResult
+         * @instance
+         */
+        UserResult.prototype.ErrorInfo = "";
 
         /**
          * Creates a new UserResult instance using the specified properties.
@@ -701,6 +710,8 @@ $root.msg = (function() {
                 writer = $Writer.create();
             if (message.RetResult != null && message.hasOwnProperty("RetResult"))
                 writer.uint32(/* id 1, wireType 0 =*/8).int32(message.RetResult);
+            if (message.ErrorInfo != null && message.hasOwnProperty("ErrorInfo"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.ErrorInfo);
             return writer;
         };
 
@@ -737,6 +748,9 @@ $root.msg = (function() {
                 switch (tag >>> 3) {
                 case 1:
                     message.RetResult = reader.int32();
+                    break;
+                case 2:
+                    message.ErrorInfo = reader.string();
                     break;
                 default:
                     reader.skipType(tag & 7);
@@ -783,6 +797,9 @@ $root.msg = (function() {
                 case 3:
                     break;
                 }
+            if (message.ErrorInfo != null && message.hasOwnProperty("ErrorInfo"))
+                if (!$util.isString(message.ErrorInfo))
+                    return "ErrorInfo: string expected";
             return null;
         };
 
@@ -816,6 +833,8 @@ $root.msg = (function() {
                 message.RetResult = 3;
                 break;
             }
+            if (object.ErrorInfo != null)
+                message.ErrorInfo = String(object.ErrorInfo);
             return message;
         };
 
@@ -832,10 +851,14 @@ $root.msg = (function() {
             if (!options)
                 options = {};
             var object = {};
-            if (options.defaults)
+            if (options.defaults) {
                 object.RetResult = options.enums === String ? "REGISTER_SUCCESS" : 0;
+                object.ErrorInfo = "";
+            }
             if (message.RetResult != null && message.hasOwnProperty("RetResult"))
                 object.RetResult = options.enums === String ? $root.msg.Result[message.RetResult] : message.RetResult;
+            if (message.ErrorInfo != null && message.hasOwnProperty("ErrorInfo"))
+                object.ErrorInfo = message.ErrorInfo;
             return object;
         };
 

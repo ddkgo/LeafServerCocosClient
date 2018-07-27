@@ -29,7 +29,9 @@ export default class Register extends cc.Component {
                 if(checkPwd.ret){
                     NetMessageCtrl.getInstance().sendRegister(name,pwd);
                 }
-                Utils.showTips("提示",checkPwd.msg)
+                else{
+                    Utils.showTips("提示",checkPwd.msg)
+                }
             }
             else{
                 Utils.showTips("提示",check.msg)

@@ -1122,7 +1122,7 @@
       }
     ],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [],
     "_prefab": null,
     "_id": "e96jm7m7hNlpjCRZ+EaNS7",
@@ -1427,7 +1427,7 @@
       "__uuid__": "67e68bc9-dad5-4ad9-a2d8-7e03d458e32f"
     },
     "_N$returnType": 0,
-    "_N$inputFlag": 4,
+    "_N$inputFlag": 3,
     "_N$inputMode": 6,
     "_N$fontSize": 29,
     "_N$lineHeight": 40,
@@ -1447,7 +1447,7 @@
       "b": 127,
       "a": 255
     },
-    "_N$maxLength": 8,
+    "_N$maxLength": 25,
     "_N$stayOnTop": false
   },
   {
@@ -1619,7 +1619,7 @@
       "b": 127,
       "a": 255
     },
-    "_N$maxLength": 8,
+    "_N$maxLength": 25,
     "_N$stayOnTop": false
   },
   {
